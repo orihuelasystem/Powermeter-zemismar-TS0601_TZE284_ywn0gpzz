@@ -1,101 +1,29 @@
-"""SPM01_Zigbee_V2"""
-"""TS0601_TZE284_iwn0gpzz"""
+# Quirk Zigbee para TS0601 (_TZE284_iwn0gpzz)
 
-from zigpy.quirks.v2.homeassistant import (
-    UnitOfElectricCurrent,
-    UnitOfElectricPotential,
-    UnitOfEnergy,
-    UnitOfFrequency,
-    UnitOfPower,
-)
-from zigpy.quirks.v2.homeassistant.sensor import SensorDeviceClass, SensorStateClass
-import zigpy.types as t
+Este repositorio contiene un **quirk personalizado para Home Assistant + ZHA**, creado para el dispositivo **TS0601** con el identificador Tuya `_TZE284_iwn0gpzz`.
 
-from zhaquirks.tuya.builder import TuyaQuirkBuilder
+## Características detectadas
 
-(
-    TuyaQuirkBuilder("_TZE284_iwn0gpzz", "TS0601")
-    .tuya_sensor(
-        dp_id=1,
-        attribute_name="energy_consumed",
-        fallback_name="Total energy consumed",
-        type=t.uint16_t,
-        state_class=SensorStateClass.TOTAL_INCREASING,
-        device_class=SensorDeviceClass.ENERGY,
-        unit=UnitOfEnergy.KILO_WATT_HOUR,
-        divisor=100,
-        translation_key="energy_consumed",
-    )
-    .tuya_sensor(
-        dp_id=2,
-        attribute_name="energy_produced",
-        fallback_name="Total energy produced",
-        type=t.uint16_t,
-        state_class=SensorStateClass.TOTAL_INCREASING,
-        device_class=SensorDeviceClass.ENERGY,
-        unit=UnitOfEnergy.KILO_WATT_HOUR,
-        divisor=100,
-        translation_key="energy_produced",
-    )
-    .tuya_sensor(
-        dp_id=111,
-        attribute_name="total_active_power",
-        fallback_name="total_active_power",
-        type=t.uint16_t,
-        state_class=SensorStateClass.MEASUREMENT,
-        device_class=SensorDeviceClass.POWER,
-        unit=UnitOfPower.WATT,
-    )
-    .tuya_sensor(
-        dp_id=101,
-        attribute_name="ac_frequency",
-        fallback_name="ac_frequency",
-        type=t.uint16_t,
-        state_class=SensorStateClass.MEASUREMENT,
-        device_class=SensorDeviceClass.FREQUENCY,
-        unit=UnitOfFrequency.HERTZ,
-        divisor=100,
-    
-    )
-    .tuya_sensor(
-        dp_id=15,
-        attribute_name="power_factor",
-        fallback_name="power_factor",
-        type=t.uint16_t,
-        state_class=SensorStateClass.MEASUREMENT,
-        device_class=SensorDeviceClass.POWER_FACTOR,
-        divisor=100,
-    )
-    .tuya_sensor(
-        dp_id=102,
-        attribute_name="voltage_phase",
-        fallback_name="voltage_phase",
-        type=t.uint16_t,
-        state_class=SensorStateClass.MEASUREMENT,
-        device_class=SensorDeviceClass.VOLTAGE,
-        divisor=10,
-        unit=UnitOfElectricPotential.VOLT,
-    )
-    .tuya_sensor(
-        dp_id=103,
-        attribute_name="current_phase",
-        translation_key="current_phase",
-        fallback_name="Current (phase A)",
-        type=t.uint16_t,
-        state_class=SensorStateClass.MEASUREMENT,
-        device_class=SensorDeviceClass.CURRENT,
-        divisor=1000,
-        unit=UnitOfElectricCurrent.AMPERE,
-    )
-    .tuya_sensor(
-        dp_id=104,
-        attribute_name="power_phase",
-        fallback_name="power_phase",
-        type=t.uint16_t,
-        state_class=SensorStateClass.MEASUREMENT,
-        device_class=SensorDeviceClass.POWER,
-        unit=UnitOfPower.WATT,
-    )
+Este quirk permite exponer correctamente los siguientes sensores:
 
-    .add_to_registry()
-)
+- Energía consumida total (`kWh`)
+- Energía producida total (`kWh`)
+- Potencia activa total (`W`)
+- Frecuencia AC (`Hz`)
+- Factor de potencia (`%`)
+- Voltaje fase (`V`)
+- Corriente fase (`A`)
+- Potencia fase (`W`)
+
+## Uso
+
+1. Copia este archivo en tu directorio de `custom_zha_quirks` (si usas `zha-custom`).
+2. Asegúrate de que Home Assistant lo detecte reiniciando el sistema o recargando ZHA.
+3. El dispositivo debe ser identificado como compatible por su modelo (`TS0601`) y fabricante (`_TZE284_iwn0gpzz`).
+
+## Notas
+
+- Basado en el nuevo sistema de `TuyaQuirkBuilder` de ZHA.
+- Se usaron divisores estándar para representar los valores correctamente en sus unidades físicas.
+
+---
