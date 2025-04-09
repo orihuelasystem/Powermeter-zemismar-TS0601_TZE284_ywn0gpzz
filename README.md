@@ -26,4 +26,11 @@ Este quirk permite exponer correctamente los siguientes sensores:
 - Basado en el nuevo sistema de `TuyaQuirkBuilder` de ZHA.
 - Se usaron divisores estándar para representar los valores correctamente en sus unidades físicas.
 
----
+
+## Colaboraciones
+
+@kvsh443 ha conseguido encontar para este quirk los dp-IDs que faltaban que pertenecian a los siguientes valores:
+
+-Factor de potencia
+-Frecuencia
+-Energía Producida
