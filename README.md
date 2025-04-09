@@ -31,6 +31,6 @@ Este quirk permite exponer correctamente los siguientes sensores:
 
 @kvsh443 ha conseguido encontar para este quirk los dp-IDs que faltaban que pertenecian a los siguientes valores:
 
--Factor de potencia
--Frecuencia
--Energía Producida
+-Factor de potencia.
+-Frecuencia.
+-Energía Producida.
