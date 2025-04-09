@@ -27,7 +27,7 @@ from zhaquirks.tuya.builder import TuyaQuirkBuilder
         translation_key="energy_consumed",
     )
     .tuya_sensor(
-        dp_id=2,
+        dp_id=23,
         attribute_name="energy_produced",
         fallback_name="Total energy produced",
         type=t.uint16_t,
@@ -47,7 +47,7 @@ from zhaquirks.tuya.builder import TuyaQuirkBuilder
         unit=UnitOfPower.WATT,
     )
     .tuya_sensor(
-        dp_id=101,
+        dp_id=32,
         attribute_name="ac_frequency",
         fallback_name="ac_frequency",
         type=t.uint16_t,
@@ -58,7 +58,7 @@ from zhaquirks.tuya.builder import TuyaQuirkBuilder
     
     )
     .tuya_sensor(
-        dp_id=15,
+        dp_id=50,
         attribute_name="power_factor",
         fallback_name="power_factor",
         type=t.uint16_t,
